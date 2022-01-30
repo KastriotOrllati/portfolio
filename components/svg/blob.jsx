@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "../../styles/Home.module.css";
 
 function Blob(props) {
   return (
-    <div style={{ width: "400px", height: "400px" }}>
+    <div className={styles.blob}>
       <svg
         viewBox="0 0 500 500"
         xmlns="http://www.w3.org/2000/svg"

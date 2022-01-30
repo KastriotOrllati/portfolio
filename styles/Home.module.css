@@ -139,8 +139,6 @@
   margin: 0 auto;
   margin-top: 4rem;
 
-  height: 450px;
-
   max-width: 90vw;
   text-align: center;
   position: relative;
@@ -366,4 +364,65 @@ article.nextSlide {
 
 .footerContact > li > a {
   display: inline-flex;
+}
+.blob {
+  height: 400px;
+  width: 400px;
+}
+
+@media only screen and (max-width: 812px) {
+  .homeContainer {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+  .aboutMe {
+    grid-template-columns: 1fr;
+  }
+  .info > p {
+    justify-self: center;
+    width: 100%;
+  }
+  .skillsContainer {
+    display: block;
+  }
+  .skillsContainer > div {
+    padding-left: 0;
+  }
+  .activeSlide {
+    flex-flow: column wrap;
+    height: auto;
+  }
+  .sectionCenter {
+    height: 600px;
+    width: 100%;
+  }
+  .projectInfo {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+  }
+  .prev,
+  .next {
+    top: 350px;
+  }
+  .contactMe {
+    grid-template-columns: 1fr;
+  }
+  .contactMeContainer {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+  .form {
+    width: 360px;
+  }
+  .footerContact {
+    display: block;
+  }
+  .blob {
+    height: 250px;
+    width: 250px;
+  }
 }
