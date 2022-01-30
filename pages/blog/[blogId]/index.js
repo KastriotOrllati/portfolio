@@ -7,7 +7,7 @@ function Blogs() {
   const blogId = router.query.blogId;
   return (
     <div>
-      blog number <span>{blogId}</span>
+      WORK IN PROGRESS <span>{blogId}</span>
     </div>
   );
 }
