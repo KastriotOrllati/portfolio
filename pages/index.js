@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import Loader from "../components/loader/loader";
+import Form from "../components/form/form";
 import {
   UilLinkedin,
   UilGithub,
@@ -31,10 +32,34 @@ import Image from "next/image";
 import ProfilePic from "../public/bg.png";
 import data from "../components/Data/projects";
 
+const initialValue = {
+  name: "",
+  email: "",
+  message: "",
+};
+
 export default function Home() {
   const [openTab, setOpenTab] = useState([true, true, true]);
   const [projects, setProjects] = useState(data);
   const [index, setIndex] = useState(0);
+  const [contact, setContact] = useState(initialValue);
+
+  function handleSubmit(e, data) {
+    e.preventDefault();
+    fetch("http://localhost:43464/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then(resetForm())
+
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  const resetForm = () => {
+    setContact(initialValue);
+  };
 
   useEffect(() => {
     const lastIndex = projects.length - 1;
@@ -104,12 +129,12 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum,
               odit.
             </p>
-            <p>
-              <h3>
+            <div>
+              <p>
                 Education:
                 <span>Bachelor CSE -UBT</span>
-              </h3>
-            </p>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -216,7 +241,7 @@ export default function Home() {
       <section className={styles.portfolioSection}>
         <div className={styles.sectionCenter}>
           {projects.map((project, projectIndex) => {
-            const { id, image, name, title, quote } = project;
+            const { id, image, name, title, quote, link } = project;
 
             let position = "nextSlide";
             if (projectIndex === index) {
@@ -230,17 +255,26 @@ export default function Home() {
             }
             return (
               <article className={styles[position]} key={id}>
-                <img
+                <Image
                   src={image}
                   alt={name}
                   width={350}
-                  height={"100%"}
+                  height={300}
                   className={styles.portfolioImg}
                 />
                 <div className={styles.projectInfo}>
                   <h4>{name}</h4>
-                  <p className="text">{quote}</p>
                   <p className="title">{title}</p>
+                  <p className="text">{quote}</p>
+                  <a
+                    className={styles.button}
+                    style={{ maxWidth: "100px" }}
+                    target="_blank"
+                    href={link}
+                    rel="noreferrer"
+                  >
+                    Demo <UilArrowRight className={styles.buttonIcon} />
+                  </a>
                 </div>
               </article>
             );
@@ -277,20 +311,37 @@ export default function Home() {
               <span>Vushtrri, Kosova 42000</span>
             </div>
           </div>
-
-          <form action="" className={styles.form}>
+          <form
+            action=""
+            onSubmit={(e) => handleSubmit(e, contact)}
+            className={styles.form}
+          >
             <div className={styles.contactInput}>
               <div className={styles.contactContent}>
-                <label htmlFor="email" className={styles.contactLabel}>
+                <label htmlFor="text" className={styles.contactLabel}>
                   Name
                 </label>
-                <input type="text" className={styles.contactInput} />
+                <input
+                  type="text"
+                  onChange={(e) =>
+                    setContact({ ...contact, name: e.target.value })
+                  }
+                  value={contact.name}
+                  className={styles.contactInput}
+                />
               </div>
               <div className={styles.contactContent}>
                 <label htmlFor="email" className={styles.contactLabel}>
                   Email
                 </label>
-                <input type="text" className={styles.contactInput} />
+                <input
+                  onChange={(e) =>
+                    setContact({ ...contact, email: e.target.value })
+                  }
+                  type="text"
+                  value={contact.email}
+                  className={styles.contactInput}
+                />
               </div>
               <div className={styles.contactContent}>
                 <label htmlFor="email" className={styles.contactLabel}>
@@ -299,13 +350,18 @@ export default function Home() {
                 <textarea
                   cols={0}
                   rows={4}
+                  value={contact.message}
                   type="text"
                   className={styles.contactInput}
+                  onChange={(e) =>
+                    setContact({ ...contact, message: e.target.value })
+                  }
                 />
               </div>
-              <a href="#" className={styles.button}>
+
+              <button type="submit" className={styles.button}>
                 Send Message <UilMessage className={styles.buttonIcon} />
-              </a>
+              </button>
             </div>
           </form>
         </div>
@@ -313,6 +369,39 @@ export default function Home() {
     </main>
   );
 }
+
+//FORM
+
+//  <form action="" className={styles.form}>
+//    <div className={styles.contactInput}>
+//      <div className={styles.contactContent}>
+//        <label htmlFor="email" className={styles.contactLabel}>
+//          Name
+//        </label>
+//        <input type="text" className={styles.contactInput} />
+//      </div>
+//      <div className={styles.contactContent}>
+//        <label htmlFor="email" className={styles.contactLabel}>
+//          Email
+//        </label>
+//        <input type="text" className={styles.contactInput} />
+//      </div>
+//      <div className={styles.contactContent}>
+//        <label htmlFor="email" className={styles.contactLabel}>
+//          Message
+//        </label>
+//        <textarea
+//          cols={0}
+//          rows={4}
+//          type="text"
+//          className={styles.contactInput}
+//        />
+//      </div>
+//      <a href="#" className={styles.button}>
+//        Send Message <UilMessage className={styles.buttonIcon} />
+//      </a>
+//    </div>
+//  </form>;
 
 // <img
 //   className={styles.portfolioImg}

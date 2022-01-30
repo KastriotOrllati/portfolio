@@ -1,0 +1,43 @@
+.blogGrid {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.blogGrid > h1 {
+  justify-self: center;
+}
+
+.blogCard {
+  max-width: 960px;
+  border-radius: 32px;
+  box-shadow: 24px 24px 80px rgba(0, 0, 0, 0.1);
+  padding: 20px 20px 28px 20px;
+  box-sizing: border-box;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.blogFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.cardContent {
+  font-family: "Vollkorn", serif;
+  font-size: 32px;
+  line-height: 1.4;
+  color: #222022;
+  box-decoration-break: clone;
+  background-image: linear-gradient(90deg, #ffef7e, #b7f9e9);
+  background-size: 100% 42%;
+  background-repeat: no-repeat;
+  background-position: 0 85%;
+  padding: 0 4px;
+  margin-left: -4px;
+}

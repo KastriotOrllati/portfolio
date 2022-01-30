@@ -51,3 +51,11 @@ section {
   padding: 1rem;
   border-radius: 0.5rem;
 }
+
+button:hover {
+  cursor: pointer;
+}
+/* button {
+  background-color: transparent;
+  border: none;
+} */
