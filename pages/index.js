@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
-import Loader from "../components/loader/loader";
-import Form from "../components/form/form";
+
 import {
   UilLinkedin,
   UilGithub,
   UilMessage,
   UilArrowRight,
-  UilArrowLeft,
   UilAngleDoubleRight,
   UilAngleDoubleLeft,
   UilCalling,
@@ -28,7 +26,6 @@ import {
 
 import Blob from "../components/svg/blob";
 import Image from "next/image";
-// import Blob from "../public/blob.svg";
 import ProfilePic from "../public/bg.png";
 import data from "../components/Data/projects";
 

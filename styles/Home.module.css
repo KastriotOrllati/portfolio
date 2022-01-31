@@ -78,10 +78,6 @@
   cursor: pointer;
 }
 
-/* .skillsInfo:hover {
-  background-color: #00567a;
-} */
-
 .skillsInfo {
   display: flex;
 
